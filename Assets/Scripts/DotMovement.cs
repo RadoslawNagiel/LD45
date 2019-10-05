@@ -6,7 +6,7 @@ public class DotMovement : MonoBehaviour
 {
     [SerializeField] float dotSpeed = 5f; 
 
-    Vector3 pos;
+    Vector2 pos;
     
     void Start()
     {
@@ -19,7 +19,7 @@ public class DotMovement : MonoBehaviour
         float MoveVertical = Input.GetAxis("Vertical");
 
         pos.x += MoveHorizontal * Time.deltaTime * dotSpeed;
-        pos.z += MoveVertical * Time.deltaTime * dotSpeed;
+        pos.y += MoveVertical * Time.deltaTime * dotSpeed;
 
         transform.position = pos; 
     }
