@@ -7,6 +7,7 @@ public class Points : MonoBehaviour
 {
     [SerializeField] GameObject SpikeText, LifeText, ShieldText;
     [SerializeField] GameObject BaseCreateButton;
+    [SerializeField] GameObject TextCanvas;
     public int SpikePoints, LifePoints, ShieldPoints;
 
     private void Start()
@@ -37,6 +38,9 @@ public class Points : MonoBehaviour
 
     public void ChangePoint(string name, int value)
     {
+        if (!TextCanvas.activeSelf)
+            TextCanvas.SetActive(true);
+
         switch (name)
         {
             case "Shield":

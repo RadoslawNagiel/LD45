@@ -6,21 +6,13 @@ public class DotCreator : MonoBehaviour
 {
     public GameObject dot;
 
-    private bool dotActivated;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) && !dotActivated)
+        if (Input.GetButton("Fire1") || Input.GetButton("Fire2") || Input.GetButton("Fire3"))
         {
-            dot.SetActive(true);
-            dotActivated = true;
+            dot.GetComponent<DotMovement>().enabled = true;
+            dot.GetComponent<SpriteRenderer>().enabled = true;
+            enabled = false;
         }
     }
 }
