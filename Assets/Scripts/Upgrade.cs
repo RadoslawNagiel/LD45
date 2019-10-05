@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Upgrade : MonoBehaviour
 {
-    [SerializeField] bool ShieldPoints, LifePoints, SpikePoints;
+    [SerializeField] bool NeedShieldPoints, NeedLifePoints, NeedSpikePoints;
     [SerializeField] int[] PointsToUnlock;
     [SerializeField] GameObject[] ObjectToUnlock;
+    [SerializeField] GameObject load;
 
     int lvl;
     int points;
+    int ShieldPoints, LifePoints, SpikePoints;
 
     private void Start()
     {
@@ -17,22 +19,53 @@ public class Upgrade : MonoBehaviour
         points = 0;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (lvl < PointsToUnlock.Length)
         {
-
-        }
-        if(points >= PointsToUnlock[lvl])
-        {
-            foreach (GameObject item in ObjectToUnlock)
+            if (collision.gameObject.tag == "Player")
             {
-                item.SetActive(true);
+                ShieldPoints = collision.gameObject.GetComponent<Points>().ShieldPoints;
+                LifePoints = collision.gameObject.GetComponent<Points>().LifePoints;
+                SpikePoints = collision.gameObject.GetComponent<Points>().SpikePoints;
+                if (NeedShieldPoints || NeedLifePoints || NeedSpikePoints)
+                {
+                    if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints && 
+                        ShieldPoints >= LifePoints && ShieldPoints >= SpikePoints) ||
+                            (NeedShieldPoints && !NeedLifePoints && !NeedSpikePoints)) && ShieldPoints > 0)
+                    {
+                        collision.gameObject.GetComponent<Points>().ChangePoint("Shield", -1);
+                        ShieldPoints--;
+                        points++;
+                    }
+                    else if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints &&
+                        SpikePoints >= LifePoints) ||
+                            (!NeedShieldPoints && !NeedLifePoints && NeedSpikePoints)) && SpikePoints > 0)
+                    {
+                        collision.gameObject.GetComponent<Points>().ChangePoint("Spike", -1);
+                        SpikePoints--;
+                        points++;
+                    }
+                    else if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints) ||
+                            (!NeedShieldPoints && NeedLifePoints && !NeedSpikePoints)) && LifePoints > 0)
+                    {
+                        collision.gameObject.GetComponent<Points>().ChangePoint("Life", -1);
+                        LifePoints--;
+                        points++;
+                    }
+                }
             }
-            lvl ++;
-            points = 0;
-            if (lvl > PointsToUnlock.Length)
-                enabled = false;
+            load.GetComponent<StatusBar>().SetBar(1f * points / PointsToUnlock[lvl]);
+            if (points >= PointsToUnlock[lvl])
+            {
+                foreach (GameObject item in ObjectToUnlock)
+                {
+                    item.SetActive(true);
+                }
+                lvl++;
+                points = 0;
+            }
         }
+        
     }
 }

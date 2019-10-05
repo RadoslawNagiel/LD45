@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Points : MonoBehaviour
 {
     [SerializeField] GameObject SpikeText, LifeText, ShieldText;
-    int SpikePoints, LifePoints, ShieldPoints;
+    [SerializeField] GameObject BaseCreateButton;
+    public int SpikePoints, LifePoints, ShieldPoints;
 
     private void Start()
     {
@@ -19,21 +20,45 @@ public class Points : MonoBehaviour
     {   
         if(collision.gameObject.tag == "Shield")
         {
-            ShieldPoints++;
-            ShieldText.GetComponent<Text>().text = ShieldPoints.ToString();
+            ChangePoint("Shield", 1);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.tag == "Spike")
         {
-            SpikePoints++;
-            SpikeText.GetComponent<Text>().text = SpikePoints.ToString();
+            ChangePoint("Spike", 1);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.tag == "Life")
         {
-            LifePoints++;
-            LifeText.GetComponent<Text>().text = LifePoints.ToString();
+            ChangePoint("Life", 1);
             Destroy(collision.gameObject);
+        }
+    }
+
+    public void ChangePoint(string name, int value)
+    {
+        switch (name)
+        {
+            case "Shield":
+                ShieldPoints += value;
+                ShieldText.GetComponent<Text>().text = ShieldPoints.ToString();
+                break;
+            case "Spike":
+                SpikePoints += value;
+                SpikeText.GetComponent<Text>().text = SpikePoints.ToString();
+                break;
+            case "Life":
+                LifePoints += value;
+                LifeText.GetComponent<Text>().text = LifePoints.ToString();
+                break;
+        }
+        if(ShieldPoints >= 5 && SpikePoints >= 5 && LifePoints >= 5)
+        {
+            BaseCreateButton.SetActive(true);
+        }
+        else
+        {
+            BaseCreateButton.SetActive(false);
         }
     }
 }

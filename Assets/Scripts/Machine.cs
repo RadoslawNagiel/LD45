@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Machine : MonoBehaviour
 {
+    [SerializeField] bool NeedShieldPoints, NeedLifePoints, NeedSpikePoints;
     [SerializeField] int cost = 5;
     [SerializeField] GameObject load;
     [SerializeField] string resourcesName;
@@ -19,10 +20,7 @@ public class Machine : MonoBehaviour
         full = false;
         Vector2 scale = load.transform.localScale;
         Vector2 pos = load.transform.localPosition;
-        scale.x = 0;
-        pos.x = -0.5f;
-        load.transform.localScale = scale;
-        load.transform.localPosition = pos;
+        load.GetComponent<StatusBar>().SetBar(0);
     }
 
     void Update()
@@ -30,12 +28,7 @@ public class Machine : MonoBehaviour
         if(full)
         {
             delay -= Time.deltaTime;
-            Vector2 sc = load.transform.localScale;
-            Vector2 pos = load.transform.localPosition;
-            sc.x = 1f * delay / cost;
-            pos.x = -((1f * cost - delay) / cost) / 2f;
-            load.transform.localScale = sc;
-            load.transform.localPosition = pos;
+            load.GetComponent<StatusBar>().SetBar(1f * delay / cost);
             if (delay <= 0)
             {
                 full = false;
@@ -51,15 +44,36 @@ public class Machine : MonoBehaviour
     {
         if (!full && delay <= 0 && collision.tag == "Player")
         {
-            moneyInput++;
-            load.GetComponent<StatusBar>().SetBar(1f * moneyInput / cost);
+            bool Next = false;
 
-            delay = 1f;
-            if (moneyInput == cost)
+            if(NeedShieldPoints && collision.GetComponent<Points>().ShieldPoints > 0)
             {
-                moneyInput = 0;
-                full = true;
-                delay = cost;
+                collision.GetComponent<Points>().ChangePoint("Shield", -1);
+                Next = true;
+            }
+            else if (NeedSpikePoints && collision.GetComponent<Points>().SpikePoints > 0)
+            {
+                collision.GetComponent<Points>().ChangePoint("Spike", -1);
+                Next = true;
+            }
+            else if (NeedLifePoints && collision.GetComponent<Points>().LifePoints > 0)
+            {
+                collision.GetComponent<Points>().ChangePoint("Life", -1);
+                Next = true;
+            }
+
+            if (Next)
+            {
+                moneyInput++;
+                load.GetComponent<StatusBar>().SetBar(1f * moneyInput / cost);
+
+                delay = 1f;
+                if (moneyInput == cost)
+                {
+                    moneyInput = 0;
+                    full = true;
+                    delay = cost;
+                }
             }
         }
     }
