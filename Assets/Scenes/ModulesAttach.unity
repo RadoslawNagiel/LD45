@@ -670,7 +670,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 30
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2214,7 +2214,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 70
+  m_LinearDrag: 0.7
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -2234,7 +2234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f62ce3b97b367a240b532921230207d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dotSpeed: 5
+  dotSpeed: 2000
 --- !u!1001 &1964171252
 PrefabInstance:
   m_ObjectHideFlags: 0
