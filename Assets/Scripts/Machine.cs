@@ -18,11 +18,11 @@ public class Machine : MonoBehaviour
         delay = 0;
         full = false;
         Vector2 scale = load.transform.localScale;
-        Vector2 pos = load.transform.position;
+        Vector2 pos = load.transform.localPosition;
         scale.x = 0;
         pos.x = -0.5f;
         load.transform.localScale = scale;
-        load.transform.position = pos;
+        load.transform.localPosition = pos;
     }
 
     void Update()
@@ -52,12 +52,7 @@ public class Machine : MonoBehaviour
         if (!full && delay <= 0 && collision.tag == "Player")
         {
             moneyInput++;
-            Vector2 sc = load.transform.localScale;
-            Vector2 pos = load.transform.localPosition;
-            sc.x = 1f * moneyInput / cost;
-            pos.x = -((1f * cost - moneyInput)/cost) /2f;
-            load.transform.localScale = sc;
-            load.transform.localPosition = pos;
+            load.GetComponent<StatusBar>().SetBar(1f * moneyInput / cost);
 
             delay = 1f;
             if (moneyInput == cost)
@@ -72,8 +67,9 @@ public class Machine : MonoBehaviour
     private void CreateObject()
     {
         GameObject Obj = (GameObject)Instantiate(Resources.Load(resourcesName), transform.position, transform.rotation, transform);
-        Vector3 pos = Obj.transform.localPosition;
+        Vector3 pos = Vector3.zero;
         pos.y += 3;
         Obj.transform.localPosition = pos;
+        Obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(200, 0));
     }
 }
