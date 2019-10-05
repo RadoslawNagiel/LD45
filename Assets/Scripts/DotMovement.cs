@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,18 +7,31 @@ public class DotMovement : MonoBehaviour
 {
     [SerializeField] float dotSpeed = 5f; 
 
-    Vector2 pos;
-        
-    void FixedUpdate()
+    Rigidbody2D myRigidbody;
+    
+    void Start()
     {
-        pos = transform.position;
-
+        myRigidbody = GetComponent<Rigidbody2D>();
+    }
+    
+    void Update()
+    {
         float MoveHorizontal = Input.GetAxis("Horizontal");
         float MoveVertical = Input.GetAxis("Vertical");
 
-        pos.x += MoveHorizontal * Time.deltaTime * dotSpeed;
-        pos.y += MoveVertical * Time.deltaTime * dotSpeed;
+        if(Math.Abs(MoveHorizontal) < 0.1f && Math.Abs(MoveVertical) < 0.1f)
+        {
+            myRigidbody.isKinematic = true;
+        }
+        else
+        {
+            myRigidbody.isKinematic = false;
+        }
 
-        transform.position = pos; 
+        myRigidbody.velocity = new Vector2(
+            MoveHorizontal * dotSpeed * Time.deltaTime,
+            MoveVertical * dotSpeed * Time.deltaTime
+        );
+
     }
 }
