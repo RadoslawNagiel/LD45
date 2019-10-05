@@ -892,6 +892,7 @@ MonoBehaviour:
   LifeText: {fileID: 444078855}
   ShieldText: {fileID: 1695527439}
   BaseCreateButton: {fileID: 874027503}
+  TextCanvas: {fileID: 670879155}
   SpikePoints: 0
   LifePoints: 0
   ShieldPoints: 0
