@@ -7,14 +7,11 @@ public class DotMovement : MonoBehaviour
     [SerializeField] float dotSpeed = 5f; 
 
     Vector2 pos;
-    
-    void Start()
+        
+    void FixedUpdate()
     {
         pos = transform.position;
-    }
-    
-    void Update()
-    {
+
         float MoveHorizontal = Input.GetAxis("Horizontal");
         float MoveVertical = Input.GetAxis("Vertical");
 
