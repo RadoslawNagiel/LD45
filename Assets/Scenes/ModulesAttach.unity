@@ -217,6 +217,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &833508812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2948795198763349606, guid: 247d7957711c84766a81087d79cef3b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2948795198255372581}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &833508816
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833508812}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1444740025
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +347,7 @@ GameObject:
   - component: {fileID: 1885314085}
   - component: {fileID: 1885314087}
   - component: {fileID: 1885314089}
+  - component: {fileID: 1885314090}
   - component: {fileID: 1885314088}
   m_Layer: 0
   m_Name: Dot
@@ -427,7 +455,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1885314089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +468,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8adf191c0bdf5451da238c0560e61fb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1885314090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1885314084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f62ce3b97b367a240b532921230207d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dotSpeed: 5
 --- !u!1001 &2948795198255372581
 PrefabInstance:
   m_ObjectHideFlags: 0

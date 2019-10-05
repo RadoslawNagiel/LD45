@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ModulesAttach : MonoBehaviour
 {
+    public ModulesJointAttacher modulesJointFactory = new ModulesJointAttacher();
+
     private Rigidbody2D selfRigidbody;
 
     void Start()
@@ -14,12 +16,12 @@ public class ModulesAttach : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("OnTriggerEnter2D");
-        GameObject module = collision.gameObject;
 
-        FixedJoint2D joint = module.AddComponent<FixedJoint2D>();
-        joint.connectedBody = selfRigidbody;
-        joint.enableCollision = false;
+        GameObject module = collision.gameObject;
+        modulesJointFactory.MakeJointBetween(module, selfRigidbody);
 
         Destroy(module.GetComponent<Collider2D>());
     }
+
+    
 }
