@@ -12,6 +12,7 @@ public class Upgrade : MonoBehaviour
     int lvl;
     int points;
     int ShieldPoints, LifePoints, SpikePoints;
+    float delay;
 
     private void Start()
     {
@@ -25,37 +26,45 @@ public class Upgrade : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                ShieldPoints = collision.gameObject.GetComponent<Points>().ShieldPoints;
-                LifePoints = collision.gameObject.GetComponent<Points>().LifePoints;
-                SpikePoints = collision.gameObject.GetComponent<Points>().SpikePoints;
-                if (NeedShieldPoints || NeedLifePoints || NeedSpikePoints)
+                if(delay <= 0)
                 {
-                    if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints && 
-                        ShieldPoints >= LifePoints && ShieldPoints >= SpikePoints) ||
-                            (NeedShieldPoints && !NeedLifePoints && !NeedSpikePoints)) && ShieldPoints > 0)
+                    ShieldPoints = collision.gameObject.GetComponent<Points>().ShieldPoints;
+                    LifePoints = collision.gameObject.GetComponent<Points>().LifePoints;
+                    SpikePoints = collision.gameObject.GetComponent<Points>().SpikePoints;
+                    if (NeedShieldPoints || NeedLifePoints || NeedSpikePoints)
                     {
-                        collision.gameObject.GetComponent<Points>().ChangePoint("Shield", -1);
-                        ShieldPoints--;
-                        points++;
-                    }
-                    else if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints &&
-                        SpikePoints >= LifePoints) ||
-                            (!NeedShieldPoints && !NeedLifePoints && NeedSpikePoints)) && SpikePoints > 0)
-                    {
-                        collision.gameObject.GetComponent<Points>().ChangePoint("Spike", -1);
-                        SpikePoints--;
-                        points++;
-                    }
-                    else if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints) ||
-                            (!NeedShieldPoints && NeedLifePoints && !NeedSpikePoints)) && LifePoints > 0)
-                    {
-                        collision.gameObject.GetComponent<Points>().ChangePoint("Life", -1);
-                        LifePoints--;
-                        points++;
+                        if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints &&
+                            ShieldPoints >= LifePoints && ShieldPoints >= SpikePoints) ||
+                                (NeedShieldPoints && !NeedLifePoints && !NeedSpikePoints)) && ShieldPoints > 0)
+                        {
+                            collision.gameObject.GetComponent<Points>().ChangePoint("Shield", -1);
+                            ShieldPoints--;
+                            points++;
+                        }
+                        else if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints &&
+                            SpikePoints >= LifePoints) ||
+                                (!NeedShieldPoints && !NeedLifePoints && NeedSpikePoints)) && SpikePoints > 0)
+                        {
+                            collision.gameObject.GetComponent<Points>().ChangePoint("Spike", -1);
+                            SpikePoints--;
+                            points++;
+                        }
+                        else if (((NeedShieldPoints && NeedLifePoints && NeedSpikePoints) ||
+                                (!NeedShieldPoints && NeedLifePoints && !NeedSpikePoints)) && LifePoints > 0)
+                        {
+                            collision.gameObject.GetComponent<Points>().ChangePoint("Life", -1);
+                            LifePoints--;
+                            points++;
+                        }
+                        delay = 0.1f;
+                        load.GetComponent<StatusBar>().SetBar(1f * points / PointsToUnlock[lvl]);
                     }
                 }
+                else
+                {
+                    delay -= Time.deltaTime;
+                }
             }
-            load.GetComponent<StatusBar>().SetBar(1f * points / PointsToUnlock[lvl]);
             if (points >= PointsToUnlock[lvl])
             {
                 foreach (GameObject item in ObjectToUnlock)
