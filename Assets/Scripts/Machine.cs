@@ -6,6 +6,7 @@ public class Machine : MonoBehaviour
 {
     [SerializeField] int cost = 5;
     [SerializeField] GameObject load;
+    [SerializeField] string resourcesName;
 
     int moneyInput;
     float delay;
@@ -70,7 +71,7 @@ public class Machine : MonoBehaviour
 
     private void CreateObject()
     {
-        GameObject Obj = (GameObject)Instantiate(Resources.Load("Life"), transform.position, transform.rotation, transform);
+        GameObject Obj = (GameObject)Instantiate(Resources.Load(resourcesName), transform.position, transform.rotation, transform);
         Vector3 pos = Obj.transform.localPosition;
         pos.y += 3;
         Obj.transform.localPosition = pos;
