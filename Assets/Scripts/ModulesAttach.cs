@@ -9,6 +9,9 @@ public class ModulesAttach : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.GetComponent<ModulesAttach>() == null)
+            return;
+
         GameObject objectToAttach = collision.gameObject;
         Rigidbody2D otherRigidbody = objectToAttach.GetComponent<Rigidbody2D>();
 
