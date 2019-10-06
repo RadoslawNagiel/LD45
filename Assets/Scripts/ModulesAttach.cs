@@ -5,36 +5,21 @@ using UnityEngine;
 
 public class ModulesAttach : MonoBehaviour
 {
-    [SerializeField] bool attachToMultiple = true;
-    [SerializeField] int jointRange = 20;
-
     private bool IsAttachedToPlayer;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
 
         ModulesAttach module = collision.gameObject.GetComponent<ModulesAttach>();
-        if ((module == null || !module.IsAttachedToPlayer) &&
-            collision.gameObject.GetComponent<DotMovement>() == null)
+        if (IsAttachedToPlayer || !isPlayerModule(module) && !isPlayerDot(collision.gameObject))
             return;
 
-        GameObject objectToAttach = collision.gameObject;
-        Rigidbody2D otherRigidbody = objectToAttach.GetComponent<Rigidbody2D>();
+        gameObject.transform.SetParent(collision.gameObject.transform);
 
-        HingeJoint2D joint = gameObject.AddComponent<HingeJoint2D>();
-        attachTo(joint, otherRigidbody);
-
-        GetComponent<Collider2D>().isTrigger = attachToMultiple;
         IsAttachedToPlayer = true;
     }
 
-    private void attachTo(HingeJoint2D joint, Rigidbody2D otherRigidbody)
-    {
-        joint.connectedBody = otherRigidbody;
-        joint.autoConfigureConnectedAnchor = false;
-        joint.enableCollision = false;
+    private bool isPlayerModule(ModulesAttach module) => module?.IsAttachedToPlayer ?? false;
 
-        int halfRange = jointRange / 2;
-        joint.limits = new JointAngleLimits2D { min = -halfRange, max = halfRange };
-    }
+    private bool isPlayerDot(GameObject obj) => obj.GetComponent<DotMovement>() != null;
 }
