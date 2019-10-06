@@ -58,9 +58,6 @@ public class Points : MonoBehaviour
                 LifeText.GetComponent<Text>().text = LifePoints.ToString();
                 break;
         }
-        if(ShieldPoints >= 5 && SpikePoints >= 5 && LifePoints >= 5)
-        {
-            BaseCreator.GetComponent<CreateBase>().CheckButton();
-        }
+        BaseCreator.GetComponent<CreateBase>().CheckButton();
     }
 }

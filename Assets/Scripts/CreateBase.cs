@@ -30,7 +30,7 @@ public class CreateBase : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.tag == "Base")
         {
@@ -44,12 +44,7 @@ public class CreateBase : MonoBehaviour
         if (collision.tag == "Base")
         {
             block = false;
-            if (player.GetComponent<Points>().LifePoints >= 5
-                && player.GetComponent<Points>().ShieldPoints >= 5
-                && player.GetComponent<Points>().SpikePoints >= 5)
-            {
-                baseCreateButton.SetActive(true);
-            }
+            CheckButton();
         }
     }
 
@@ -57,7 +52,12 @@ public class CreateBase : MonoBehaviour
     {
         if (block == false)
         {
-            baseCreateButton.SetActive(true);
+            if (player.GetComponent<Points>().LifePoints >= 5
+                && player.GetComponent<Points>().ShieldPoints >= 5
+                && player.GetComponent<Points>().SpikePoints >= 5)
+            {
+                baseCreateButton.SetActive(true);
+            }
         }
     }
 }
