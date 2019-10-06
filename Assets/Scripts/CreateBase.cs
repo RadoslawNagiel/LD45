@@ -8,6 +8,17 @@ public class CreateBase : MonoBehaviour
     [SerializeField] GameObject baseCreateButton;
 
     bool block = false;
+    
+    private void Update()
+    {
+        if (Input.GetButton("Fire1") || Input.GetButton("Fire2") || Input.GetButton("Fire3") || Input.GetKeyDown("space"))
+        {
+            if (player.GetComponent<Points>().LifePoints >= 5
+                && player.GetComponent<Points>().ShieldPoints >= 5
+                && player.GetComponent<Points>().SpikePoints >= 5)
+                    Create();
+        }
+    }
 
     public void Create()
     {
@@ -16,12 +27,7 @@ public class CreateBase : MonoBehaviour
             player.GetComponent<Points>().ChangePoint("Shield", -5);
             player.GetComponent<Points>().ChangePoint("Spike", -5);
             player.GetComponent<Points>().ChangePoint("Life", -5);
-            if (player.GetComponent<Points>().LifePoints < 5
-                || player.GetComponent<Points>().ShieldPoints < 5
-                || player.GetComponent<Points>().SpikePoints < 5)
-            {
-                baseCreateButton.SetActive(false);
-            }
+            CheckButton();
             GameObject Obj = (GameObject)Instantiate(Resources.Load("Base"), player.transform.position, player.transform.rotation);
             Vector2 pos = Obj.transform.position;
             pos.x += player.transform.up.x * 8;
