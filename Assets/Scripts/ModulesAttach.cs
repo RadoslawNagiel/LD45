@@ -17,7 +17,10 @@ public class ModulesAttach : MonoBehaviour
         gameObject.transform.SetParent(collision.gameObject.transform);
 
         IsAttachedToPlayer = true;
+        onAttach(collision);
     }
+
+    protected virtual void onAttach(Collider2D collision) {}
 
     private bool isPlayerModule(ModulesAttach module) => module?.IsAttachedToPlayer ?? false;
 
