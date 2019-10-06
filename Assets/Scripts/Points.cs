@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class Points : MonoBehaviour
 {
     [SerializeField] GameObject SpikeText, LifeText, ShieldText;
-    [SerializeField] GameObject BaseCreateButton;
     [SerializeField] GameObject TextCanvas;
+    [SerializeField] GameObject BaseCreator;
     public int SpikePoints, LifePoints, ShieldPoints;
 
     private void Start()
@@ -60,11 +60,7 @@ public class Points : MonoBehaviour
         }
         if(ShieldPoints >= 5 && SpikePoints >= 5 && LifePoints >= 5)
         {
-            BaseCreateButton.SetActive(true);
-        }
-        else
-        {
-            BaseCreateButton.SetActive(false);
+            BaseCreator.GetComponent<CreateBase>().CheckButton();
         }
     }
 }

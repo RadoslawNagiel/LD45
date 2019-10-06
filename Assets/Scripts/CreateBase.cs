@@ -4,15 +4,60 @@ using UnityEngine;
 
 public class CreateBase : MonoBehaviour
 {
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject baseCreateButton;
+
+    bool block = false;
+
     public void Create()
     {
-        gameObject.GetComponent<Points>().ChangePoint("Shield", -5);
-        gameObject.GetComponent<Points>().ChangePoint("Spike", -5);
-        gameObject.GetComponent<Points>().ChangePoint("Life", -5);
-        GameObject Obj = (GameObject)Instantiate(Resources.Load("Base"), transform.position, transform.rotation);
-        Vector2 pos = Obj.transform.position;
-        pos.x += transform.up.x * 8;
-        pos.y += transform.up.y * 8;
-        Obj.transform.position = pos;
+        if(!block)
+        {
+            player.GetComponent<Points>().ChangePoint("Shield", -5);
+            player.GetComponent<Points>().ChangePoint("Spike", -5);
+            player.GetComponent<Points>().ChangePoint("Life", -5);
+            if (player.GetComponent<Points>().LifePoints < 5
+                || player.GetComponent<Points>().ShieldPoints < 5
+                || player.GetComponent<Points>().SpikePoints < 5)
+            {
+                baseCreateButton.SetActive(false);
+            }
+            GameObject Obj = (GameObject)Instantiate(Resources.Load("Base"), player.transform.position, player.transform.rotation);
+            Vector2 pos = Obj.transform.position;
+            pos.x += player.transform.up.x * 8;
+            pos.y += player.transform.up.y * 8;
+            Obj.transform.position = pos;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Base")
+        {
+            block = true;
+            baseCreateButton.SetActive(false);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Base")
+        {
+            block = false;
+            if (player.GetComponent<Points>().LifePoints >= 5
+                && player.GetComponent<Points>().ShieldPoints >= 5
+                && player.GetComponent<Points>().SpikePoints >= 5)
+            {
+                baseCreateButton.SetActive(true);
+            }
+        }
+    }
+
+    public void CheckButton()
+    {
+        if (block == false)
+        {
+            baseCreateButton.SetActive(true);
+        }
     }
 }
