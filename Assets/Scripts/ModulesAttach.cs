@@ -18,6 +18,8 @@ public class ModulesAttach : MonoBehaviour
 
         IsAttachedToPlayer = true;
         onAttach(collision);
+
+        CameraScript.OnModuleAttached(gameObject);
     }
 
     protected virtual void onAttach(Collider2D collision) {}
