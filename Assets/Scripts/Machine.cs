@@ -84,6 +84,6 @@ public class Machine : MonoBehaviour
         Vector3 pos = Vector3.zero;
         pos.y += 3;
         Obj.transform.localPosition = pos;
-        Obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(1000, 0));
+        Obj.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000);
     }
 }
