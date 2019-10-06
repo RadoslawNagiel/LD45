@@ -39,7 +39,9 @@ public class Points : MonoBehaviour
     public void ChangePoint(string name, int value)
     {
         if (!TextCanvas.activeSelf)
-            TextCanvas.SetActive(true);
+        {
+            GetComponent<Animator>().Play("CanvasAnimation");
+        }
 
         switch (name)
         {
