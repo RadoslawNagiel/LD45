@@ -10,10 +10,11 @@ public class Chunk : MonoBehaviour
     [SerializeField] int MaxItems;
     [SerializeField] int PointChanse;
     [SerializeField] int ItemChanse;
+    [SerializeField] int OpponentChanse;
     [SerializeField] float maxDelay;
     float Delay;
 
-    public List<GameObject> ItemList = new List<GameObject>();
+    List<GameObject> ItemList = new List<GameObject>();
 
 
     bool enough;
@@ -110,7 +111,7 @@ public class Chunk : MonoBehaviour
             Delay -= Time.deltaTime;
         else if(ItemList.Count < MaxItems)
         {
-            float rnd = Random.Range(0, ItemChanse + PointChanse);
+            float rnd = Random.Range(0, ItemChanse + PointChanse + OpponentChanse);
             int i = Random.Range(1, 4);
             
             string name ="";
@@ -129,7 +130,7 @@ public class Chunk : MonoBehaviour
                         break;
                 }
             }
-            else
+            else if (rnd < ItemChanse + PointChanse)
             {
                 switch (i)
                 {
@@ -144,6 +145,19 @@ public class Chunk : MonoBehaviour
                         break;
                 }
             }
+            else
+                switch (i)
+                {
+                    case 1:
+                        name = "Enemy1";
+                        break;
+                    case 2:
+                        name = "Enemy2";
+                        break;
+                    case 3:
+                        name = "Enemy3";
+                        break;
+                }
             GameObject Obj = (GameObject)Instantiate(Resources.Load(name), transform.position, transform.rotation);
             ItemList.Add(Obj);
             Vector2 pos = Obj.transform.position;

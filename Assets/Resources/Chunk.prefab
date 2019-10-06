@@ -659,6 +659,7 @@ MonoBehaviour:
   MaxItems: 4
   PointChanse: 10
   ItemChanse: 1
+  OpponentChanse: 1
   maxDelay: 5
   ItemList: []
 --- !u!50 &1779716953
