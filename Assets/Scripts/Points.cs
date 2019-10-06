@@ -23,16 +23,19 @@ public class Points : MonoBehaviour
         {
             ChangePoint("Shield", 1);
             Destroy(collision.gameObject);
+            GetComponent<AudioSource>().Play();
         }
         else if (collision.gameObject.tag == "Spike")
         {
             ChangePoint("Spike", 1);
             Destroy(collision.gameObject);
+            GetComponent<AudioSource>().Play();
         }
         else if (collision.gameObject.tag == "Life")
         {
             ChangePoint("Life", 1);
             Destroy(collision.gameObject);
+            GetComponent<AudioSource>().Play();
         }
     }
 

@@ -85,5 +85,6 @@ public class Machine : MonoBehaviour
         pos.y += 3;
         Obj.transform.localPosition = pos;
         Obj.GetComponent<Rigidbody2D>().AddForce(transform.up * 1000);
+        GetComponent<AudioSource>().Play();
     }
 }
