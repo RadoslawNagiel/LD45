@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +8,14 @@ public class ModulesAttach : MonoBehaviour
     [SerializeField] bool attachToMultiple = true;
     [SerializeField] int jointRange = 20;
 
-    private bool IsAttached;
+    private bool IsAttachedToPlayer;
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        ModulesAttach otherScript = collision.gameObject.GetComponent<ModulesAttach>();
-        if (collision.gameObject.GetComponent<DotMovement>() == null &&
-            (otherScript == null || !otherScript.IsAttached))
+
+        ModulesAttach module = collision.gameObject.GetComponent<ModulesAttach>();
+        if ((module == null || !module.IsAttachedToPlayer) &&
+            collision.gameObject.GetComponent<DotMovement>() == null)
             return;
 
         GameObject objectToAttach = collision.gameObject;
@@ -23,7 +25,7 @@ public class ModulesAttach : MonoBehaviour
         attachTo(joint, otherRigidbody);
 
         GetComponent<Collider2D>().isTrigger = attachToMultiple;
-        IsAttached = true;
+        IsAttachedToPlayer = true;
     }
 
     private void attachTo(HingeJoint2D joint, Rigidbody2D otherRigidbody)
