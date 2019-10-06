@@ -12,7 +12,7 @@ public class DotCreator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Fire1") || Input.GetButton("Fire2") || Input.GetButton("Fire3"))
+        if (Input.GetButton("Fire1") || Input.GetButton("Fire2") || Input.GetButton("Fire3") || Input.GetKeyDown("space"))
         {
             GetComponent<Animator>().Play("DotAnim");
             GetComponent<DotMovement>().enabled = true;

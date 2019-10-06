@@ -5533,6 +5533,7 @@ GameObject:
   - component: {fileID: 4272057659701053209}
   - component: {fileID: 219220486}
   - component: {fileID: 219220485}
+  - component: {fileID: 526660859}
   m_Layer: 0
   m_Name: Dot
   m_TagString: Player
@@ -5719,3 +5720,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8801f5e633b14deeb09a3d066f80811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &526660859
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272057659701053204}
+  m_Enabled: 1
