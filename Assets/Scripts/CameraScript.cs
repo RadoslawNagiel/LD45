@@ -29,6 +29,8 @@ public class CameraScript : MonoBehaviour
     */
     private void Update()
     {
+        if (player == null) return;
+
         Vector3 pos = transform.position;
         pos.x = player.transform.position.x;
         pos.y = player.transform.position.y;
