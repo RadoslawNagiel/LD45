@@ -27,7 +27,7 @@ public class CameraScript : MonoBehaviour
         playerBounds.Encapsulate(player.GetComponent<Renderer>().bounds);
     }
     */
-    private void FixedUpdate()
+    private void Update()
     {
         Vector3 pos = transform.position;
         pos.x = player.transform.position.x;

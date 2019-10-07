@@ -28,11 +28,11 @@ public class Marker : MonoBehaviour
             vector.Normalize();
             if (vector.x != 0)
             {
-                float mix = (Screen.height / 2) / vector.y;
+                float mix = (Screen.height / 2f) / vector.y;
                 if (vector.y < 0)
                     mix = -mix;
                 vector *= mix;
-                if (Mathf.Abs(vector.x) > Screen.width / 2)
+                if (Mathf.Abs(vector.x) > Screen.width / 2f)
                 {
                     mix = (Screen.width / 2) / vector.x;
                     if (vector.x < 0)
