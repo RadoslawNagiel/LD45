@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4272057659701053211}
   - component: {fileID: 4272057659701053208}
   - component: {fileID: 4272057659701053209}
+  - component: {fileID: 8551906353262933737}
   m_Layer: 8
   m_Name: Enemy1
   m_TagString: Untagged
@@ -121,6 +122,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.28
+--- !u!114 &8551906353262933737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4272057659701053204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d252dca62604f40ad8ab625ea1a983be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 1
 --- !u!1001 &3167883829851421733
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -192,6 +206,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626957746816801921, guid: ae63a67dee515e94aa7c89ea0fc585d4,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae63a67dee515e94aa7c89ea0fc585d4, type: 3}
@@ -271,6 +290,11 @@ PrefabInstance:
     - target: {fileID: 2480961910608296459, guid: d944235eb030c7141a1f78da3ee62cf2,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7701696490976272382, guid: d944235eb030c7141a1f78da3ee62cf2,
+        type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

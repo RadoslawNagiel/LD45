@@ -17,6 +17,7 @@ public class ModulesAttach : MonoBehaviour
         gameObject.transform.SetParent(collision.gameObject.transform);
 
         IsAttachedToPlayer = true;
+        gameObject.GetComponent<Collider2D>().isTrigger = false;
         onAttach(collision);
 
         //CameraScript.OnModuleAttached(gameObject);

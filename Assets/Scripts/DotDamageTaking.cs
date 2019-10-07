@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerDamageTaking : DamageTaking
+public class DotDamageTaking : DamageTaking
 {
     private int lifeUnits = 0;
 
