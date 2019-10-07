@@ -5567,6 +5567,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 4272057659701053204}
   baseCreateButton: {fileID: 874027503}
+  Canvas: {fileID: 670879155}
 --- !u!1 &2070896280
 GameObject:
   m_ObjectHideFlags: 0
@@ -5951,7 +5952,7 @@ MonoBehaviour:
   - {fileID: 6305703150370699805, guid: 9ebd49e77bdf5f244b806c71d56eaf6d, type: 3}
   - {fileID: 1835576989894672995, guid: 509044ea2de38a0459f1a632fe3f8346, type: 3}
   ObjecyGenerateChanse: 010000000100000001000000010000000100000001000000080000000800000008000000
-  MaxItems: 20
+  MaxItems: 30
   maxDelay: 0
 --- !u!114 &-4826306026886989589
 MonoBehaviour:

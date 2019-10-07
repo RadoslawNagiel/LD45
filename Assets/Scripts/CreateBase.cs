@@ -6,6 +6,7 @@ public class CreateBase : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject baseCreateButton;
+    [SerializeField] GameObject Canvas;
 
     bool block = false;
     
@@ -33,6 +34,9 @@ public class CreateBase : MonoBehaviour
             pos.x += player.transform.up.x * 8;
             pos.y += player.transform.up.y * 8;
             Obj.transform.position = pos;
+            GameObject MarkerObj = (GameObject)Instantiate(Resources.Load("Marker"), Canvas.transform);
+            MarkerObj.GetComponent<Marker>().baseGameobject = Obj.transform;
+            MarkerObj.GetComponent<Marker>().player = player.transform;
         }
     }
 
