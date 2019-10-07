@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class DotDamageTaking : DamageTaking
 {
-    private int lifeUnits = 0;
-
     public override void TakeDamage(int damage)
     {
-        if(lifeUnits <= 0)
+        var life = gameObject.GetComponentInChildren<Life>();
+        if(life == null)
         {
             base.TakeDamage(damage);
         }

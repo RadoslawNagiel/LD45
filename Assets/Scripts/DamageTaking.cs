@@ -3,7 +3,7 @@ using System.Collections;
 
 public class DamageTaking : MonoBehaviour
 {
-    [SerializeField] int hp = 1;
+    [SerializeField] protected int hp = 1;
 
     public virtual void TakeDamage(int damage)
     {
