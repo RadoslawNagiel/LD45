@@ -18,15 +18,23 @@ public class Chunk : MonoBehaviour
 
 
     bool enough;
+    public bool generate;
 
     private void Start()
     {
         enough = false;
+        generate = false;
         checkAdjacent();
         Delay = Random.Range(0, maxDelay);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void Update()
+    {
+        if (generate)
+            GenerateItems();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if(!enough && collision.tag == "Chunk")
@@ -79,18 +87,32 @@ public class Chunk : MonoBehaviour
                         Obj.transform.position = pos;
 
                         AdjacentChunks[i] = Obj;
+                        Obj.GetComponent<Chunk>().enabled = true;
                     }
                 }
-                checkAdjacent();
                 for (int i = 0; i < 8; i++)
                 {
                     AdjacentChunks[i].GetComponent<Chunk>().checkAdjacent();
                 }
+                checkAdjacent();
             }
+            generate = true;
             GenerateItems();
             for (int i = 0; i <= 7; i++)
             {
-                AdjacentChunks[i].GetComponent<Chunk>().GenerateItems();
+                AdjacentChunks[i].GetComponent<Chunk>().generate = true;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Player")
+        {
+            generate = false;
+            for (int i = 0; i <= 7; i++)
+            {
+                AdjacentChunks[i].GetComponent<Chunk>().generate = false;
             }
         }
     }
@@ -107,7 +129,7 @@ public class Chunk : MonoBehaviour
                 }
             }
         }
-        if (Delay > 0)
+        else if (Delay > 0)
             Delay -= Time.deltaTime;
         else if(ItemList.Count < MaxItems)
         {

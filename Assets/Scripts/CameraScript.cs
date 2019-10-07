@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraScript : MonoBehaviour
 {
     [SerializeField] GameObject player;
-
+    /*
     private static Camera camera;
     private static Bounds playerBounds;
 
@@ -26,7 +26,7 @@ public class CameraScript : MonoBehaviour
         playerBounds = new Bounds(transform.position, Vector3.zero);
         playerBounds.Encapsulate(player.GetComponent<Renderer>().bounds);
     }
-
+    */
     private void FixedUpdate()
     {
         Vector3 pos = transform.position;

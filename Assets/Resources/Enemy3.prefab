@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4272057659701053211}
   - component: {fileID: 4272057659701053208}
   - component: {fileID: 4272057659701053209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy3
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -137,6 +137,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spike
       objectReference: {fileID: 0}
+    - target: {fileID: 2480961910608296457, guid: d944235eb030c7141a1f78da3ee62cf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2480961910608296459, guid: d944235eb030c7141a1f78da3ee62cf2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -211,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 198547692858559255, guid: ae63a67dee515e94aa7c89ea0fc585d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198547692858559253, guid: ae63a67dee515e94aa7c89ea0fc585d4,
         type: 3}
@@ -287,6 +297,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Life
       objectReference: {fileID: 0}
+    - target: {fileID: 4825364685079208064, guid: b7b94b8945d1c79409cf7a9945dae45a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4825364685079208066, guid: b7b94b8945d1c79409cf7a9945dae45a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -361,6 +376,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spike
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480961910608296457, guid: d944235eb030c7141a1f78da3ee62cf2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2480961910608296459, guid: d944235eb030c7141a1f78da3ee62cf2,
         type: 3}
@@ -437,6 +457,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shield (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 198547692858559255, guid: ae63a67dee515e94aa7c89ea0fc585d4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 198547692858559253, guid: ae63a67dee515e94aa7c89ea0fc585d4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -511,6 +536,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Life (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4825364685079208064, guid: b7b94b8945d1c79409cf7a9945dae45a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4825364685079208066, guid: b7b94b8945d1c79409cf7a9945dae45a,
         type: 3}
