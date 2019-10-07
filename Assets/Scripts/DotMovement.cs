@@ -16,11 +16,12 @@ public class DotMovement : MonoBehaviour
     }
     
     void Update()
-    {/*
+    {
         float MoveHorizontal = Input.GetAxis("Horizontal");
         float MoveVertical = Input.GetAxis("Vertical");
+        float Rotate = Input.GetAxis("RotateAxis");
 
-        if (Math.Abs(MoveHorizontal) < 0.1f && Math.Abs(MoveVertical) < 0.1f)
+        if (Math.Abs(MoveVertical) < 0.1f && Math.Abs(MoveVertical) < 0.1f)
         {
             myRigidbody.isKinematic = true;
         }
@@ -32,22 +33,8 @@ public class DotMovement : MonoBehaviour
         myRigidbody.velocity = new Vector2(
             MoveHorizontal * dotSpeed * Time.deltaTime,
             MoveVertical * dotSpeed * Time.deltaTime
-        );*/
-
-        float MoveHorizontal = Input.GetAxis("Horizontal");
-        float MoveVertical = Input.GetAxis("Vertical");
-
-        if (Math.Abs(MoveVertical) < 0.1f)
-        {
-            myRigidbody.isKinematic = true;
-        }
-        else
-        {
-            myRigidbody.isKinematic = false;
-        }
-        
-        myRigidbody.velocity = transform.up * MoveVertical * dotSpeed * Time.deltaTime;
-        transform.Rotate(0, 0, -MoveHorizontal * rotSpeed * Time.deltaTime);
+        );
+        myRigidbody.transform.Rotate(0, 0, Rotate * rotSpeed * Time.deltaTime);
 
     }
 }
